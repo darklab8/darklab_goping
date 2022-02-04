@@ -4,11 +4,13 @@ example:
 
 go run . --url="https://httpbin.org/ip" --n=2
 ```
-{"message":"pong!"}%!(EXTRA time.Duration=585.9592ms)
-{"message":"pong!"}%!(EXTRA time.Duration=673.824854ms)
-{"message":"pong!"}%!(EXTRA time.Duration=877.372085ms)
-...
-{"message":"pong!"}%!(EXTRA time.Duration=865.47524ms)
-{"message":"pong!"}%!(EXTRA time.Duration=813.026781ms)
-total time 1.055035429s
+{
+  "origin": "123.123.123.123"
+}
+%!(EXTRA time.Duration=818.584921ms)
+{
+  "origin": "123.123.123.123"
+}
+%!(EXTRA time.Duration=819.336826ms)
+total time 819.388399ms
 ```
