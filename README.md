@@ -2,7 +2,7 @@ golang program to query same url N times at the same time.
 
 example:
 
-$: go run . 125 https://my-secret-url.com/ping
+go run . --url="https://httpbin.org/ip" --n=2
 ```
 {"message":"pong!"}%!(EXTRA time.Duration=585.9592ms)
 {"message":"pong!"}%!(EXTRA time.Duration=673.824854ms)

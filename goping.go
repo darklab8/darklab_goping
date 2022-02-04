@@ -2,18 +2,15 @@
 package main
 
 import (
-	"os"
-	"strconv"
+	"flag"
 
 	"github.com/dd84ai/goping/query"
 )
 
 func main() {
-	channels_amount, err := strconv.Atoi(os.Args[1])
-	if err != nil {
-		panic(err)
-	}
-	url := os.Args[2]
+	channels_amount := flag.Int("n", 1, "Amount times to query the url")
+	url := flag.String("url", "", "Url to query")
+	flag.Parse()
 
-	query.Queries(channels_amount, url)
+	query.Queries(*channels_amount, *url)
 }
