@@ -28,21 +28,13 @@ func query(answer chan string, url string) {
 	answer <- string(fmt.Sprintf(string(body), elapsed))
 }
 
-func main() {
-
+func Goping(channels_amount int, url string) {
 	start := time.Now()
-
-	channels_amount, err := strconv.Atoi(os.Args[1])
-	if err != nil {
-		panic(err)
-	}
 
 	chans := []chan string{}
 	for i := 0; i < channels_amount; i++ {
 		chans = append(chans, make(chan string))
 	}
-
-	url := os.Args[2]
 
 	for _, channel := range chans {
 		go query(channel, url)
@@ -54,4 +46,14 @@ func main() {
 
 	elapsed := time.Since(start)
 	fmt.Printf("total time %s\n", elapsed)
+}
+
+func main() {
+	channels_amount, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		panic(err)
+	}
+	url := os.Args[2]
+
+	Goping(channels_amount, url)
 }
