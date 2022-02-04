@@ -1,5 +1,5 @@
 // Script to query url N times simultaneously
-package main
+package goping
 
 import (
 	"fmt"
