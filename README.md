@@ -1,4 +1,4 @@
-golang program to query same url N times at the same time
+golang program to query same url N times at the same time.
 
 example:
 
