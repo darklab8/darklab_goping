@@ -5,7 +5,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/dd84ai/goping/core"
+	"github.com/dd84ai/goping/query"
 )
 
 func main() {
@@ -15,5 +15,5 @@ func main() {
 	}
 	url := os.Args[2]
 
-	core.Queries(channels_amount, url)
+	query.Queries(channels_amount, url)
 }
