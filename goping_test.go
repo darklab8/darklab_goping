@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"goping/query"
-	"goping/query/webserver"
+	"goping/webserver"
 	"os/exec"
 	"strings"
 	"testing"
@@ -17,25 +17,8 @@ func TestTryingSimpleCMD(t *testing.T) {
 		t.Error(err)
 	}
 
-	// Print the output
 	fmt.Println(string(stdout))
 }
-
-// func TestCMDQueryUrl(t *testing.T) {
-// 	webserver.Activate_test_web_server()
-
-// 	cmd := exec.Command("go run . --url=\"http://localhost:8080/\" --n=2")
-// 	stdout, err := cmd.Output()
-
-// 	if err != nil {
-// 		fmt.Println(string(stdout))
-// 		t.Error(err)
-// 	}
-
-// 	// Print the output
-// 	fmt.Println(string(stdout))
-
-// }
 
 func TestCMD(t *testing.T) {
 	webserver.Activate_test_web_server(8081)
@@ -50,7 +33,6 @@ func TestCMD(t *testing.T) {
 
 	// CMD
 	cmd := exec.Command("go", "run", ".", "-url=http://localhost:8081/", "-n=2")
-	// cmd := exec.Command("go", "build", ".")
 	stdout, err := cmd.Output()
 
 	if err != nil {

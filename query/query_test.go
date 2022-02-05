@@ -2,7 +2,7 @@ package query
 
 import (
 	"fmt"
-	"goping/query/webserver"
+	"goping/webserver"
 	"strings"
 	"testing"
 )
