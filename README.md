@@ -1,6 +1,6 @@
 golang program to query same url N times at the same time.
 
-available as docker image: https://hub.docker.com/repository/docker/darkwind8/goping
+available as docker image: https://hub.docker.com/r/darkwind8/goping
 
 example:
 
