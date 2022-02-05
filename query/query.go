@@ -4,13 +4,11 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 	"time"
 )
 
-func query(answer chan string, url string) {
-
-	start := time.Now()
-
+func query(url string) string {
 	resp, err := http.Get(url)
 	if err != nil {
 		fmt.Println("query failed")
@@ -21,11 +19,20 @@ func query(answer chan string, url string) {
 		fmt.Println("readAll failed")
 	}
 
-	elapsed := time.Since(start)
-	answer <- string(fmt.Sprintf(string(body), elapsed))
+	return string(body)
 }
 
-func Queries(channels_amount int, url string) {
+func channeledQuery(answer chan string, url string) {
+
+	start := time.Now()
+
+	body := query(url)
+
+	elapsed := time.Since(start)
+	answer <- string(fmt.Sprintf(body, elapsed))
+}
+
+func Queries(channels_amount int, url string) string {
 	start := time.Now()
 
 	chans := []chan string{}
@@ -34,13 +41,18 @@ func Queries(channels_amount int, url string) {
 	}
 
 	for _, channel := range chans {
-		go query(channel, url)
+		go channeledQuery(channel, url)
 	}
 
+	var sb strings.Builder
 	for _, channel := range chans {
-		println(<-channel)
+		msg := <-channel
+		fmt.Println(msg)
+		sb.WriteString(msg)
 	}
 
 	elapsed := time.Since(start)
 	fmt.Printf("total time %s\n", elapsed)
+
+	return sb.String()
 }
