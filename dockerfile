@@ -10,3 +10,5 @@ FROM alpine:3.15 as runner
 
 WORKDIR /app
 COPY --from=builder /app/goping /app/goping
+
+ENTRYPOINT ["/app/goping"]
