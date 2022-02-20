@@ -13,6 +13,6 @@ deploying_container:
     DOCKER_HOST: tcp://dind-service:2375
   script:
       - docker ps
-      - echo "$dockerconfig_darkwind8" > ~/.docker/config.json
+      - mkdir ~/.docker; echo "$dockerconfig_darkwind8" > ~/.docker/config.json
       - docker build --tag $PIPELINE_BUILDING .
       - docker push $PIPELINE_BUILDING
