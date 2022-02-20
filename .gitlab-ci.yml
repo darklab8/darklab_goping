@@ -8,7 +8,7 @@ stages:
   - deploy1
 
 testing:
-  image: darkwind8/golang-builder:v1.0.0
+  image: darkwind8/builder-golang:latest
   stage: testing
   variables:
     DOCKER_HOST: tcp://dind-service:2375
