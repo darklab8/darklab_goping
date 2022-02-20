@@ -1,0 +1,18 @@
+variables:
+  CI_REGISTRY: registry.gitlab.com
+  PIPELINE_RUNNER: registry.gitlab.com/darklab2/darklab_pipeliner/darklab-pipeliner:kubectl-v1.0.3
+  PIPELINE_BUILDING: darkwind8/goping:latest
+
+stages:
+  - deploy1
+
+deploying_container:
+  image: ${PIPELINE_RUNNER}
+  stage: deploy1
+  variables:
+    DOCKER_HOST: tcp://dind-service:2375
+  script:
+      - docker ps
+      - echo "$dockerconfig_darkwind8" > ~/.docker/config.json
+      - docker build --tag $PIPELINE_BUILDING .
+      - docker push $PIPELINE_BUILDING
