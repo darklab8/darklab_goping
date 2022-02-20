@@ -4,7 +4,16 @@ variables:
   PIPELINE_BUILDING: darkwind8/goping:latest
 
 stages:
+  - testing
   - deploy1
+
+testing:
+  image: golang:1.17.7-alpine3.15
+  stage: testing
+  variables:
+    DOCKER_HOST: tcp://dind-service:2375
+  script:
+      - go test ./...
 
 deploying_container:
   image: ${PIPELINE_RUNNER}
